@@ -1,0 +1,35 @@
+.row {
+    /*display: flex;*/
+    /*justify-content: space-evenly;*/
+}
+.cell {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin: 0px;
+}
+
+.black {
+    background-image: url("images/gray-marble.jpg");
+}
+
+.red {
+    background-image: url("images/white-marble.jpg");
+}
+
+.checker {
+    margin: 10px;
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+}
+
+.red-checker {
+    background-image: url("images/go-stone-white.png");
+    background-size: cover;
+}
+
+.black-checker {
+    background-image: url("images/go-stone-black.png");
+    background-size: cover;
+}

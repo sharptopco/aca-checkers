@@ -3,42 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Game Board</title>
-
-    <style>
-        .row {
-            /*display: flex;*/
-            /*justify-content: space-evenly;*/
-        }
-        .cell {
-            width: 100px;
-            height: 100px;
-            display: inline-block;
-            margin: 0px;
-        }
-
-        .black {
-            background-color: black;
-        }
-
-        .red {
-            background-color: darkred;
-        }
-        
-        .checker {
-            margin: 10px;
-            border-radius: 50%;
-            height: 80px;
-            width: 80px;
-        }
-
-        .red-checker {
-            background-color: #DC143C;
-        }
-
-        .black-checker {
-            background-color: #333;
-        }
-    </style>
+    <link rel="stylesheet" href="board.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <div id="board-container">
@@ -97,24 +65,40 @@
         </div>
     </div>
     <div id="row-4" class="row">
-        <div id="cell-4-1" class="cell black"></div>
+        <div id="cell-4-1" class="cell black">
+            <div class="checker red-checker" hidden></div>
+        </div>
         <div id="cell-4-2" class="cell red"></div>
-        <div id="cell-4-3" class="cell black"></div>
+        <div id="cell-4-3" class="cell black">
+            <div class="checker red-checker" hidden></div>
+        </div>
         <div id="cell-4-4" class="cell red"></div>
-        <div id="cell-4-5" class="cell black"></div>
+        <div id="cell-4-5" class="cell black">
+            <div class="checker red-checker" hidden></div>
+        </div>
         <div id="cell-4-6" class="cell red"></div>
-        <div id="cell-4-7" class="cell black"></div>
+        <div id="cell-4-7" class="cell black">
+            <div class="checker red-checker" hidden></div>
+        </div>
         <div id="cell-4-8" class="cell red"></div>
     </div>
     <div id="row-5" class="row">
         <div id="cell-5-1" class="cell red"></div>
-        <div id="cell-5-2" class="cell black"></div>
+        <div id="cell-5-2" class="cell black">
+            <div class="checker red-checker" hidden></div>
+        </div>
         <div id="cell-5-3" class="cell red"></div>
-        <div id="cell-5-4" class="cell black"></div>
+        <div id="cell-5-4" class="cell black">
+            <div class="checker red-checker" hidden></div>
+        </div>
         <div id="cell-5-5" class="cell red"></div>
-        <div id="cell-5-6" class="cell black"></div>
+        <div id="cell-5-6" class="cell black">
+            <div class="checker red-checker" hidden></div>
+        </div>
         <div id="cell-5-7" class="cell red"></div>
-        <div id="cell-5-8" class="cell black"></div>
+        <div id="cell-5-8" class="cell black">
+            <div class="checker red-checker" hidden></div>
+        </div>
     </div>
     <div id="row-6" class="row">
         <div id="cell-6-1" class="cell black">
@@ -171,5 +155,6 @@
         <div id="cell-8-8" class="cell red"></div>
     </div>
 </div>
+<script src="board.js"></script>
 </body>
 </html>
