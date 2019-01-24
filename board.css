@@ -10,11 +10,11 @@
 }
 
 .black {
-    background-color: #333;
+    background-image: url("images/gray-marble.jpg");
 }
 
 .red {
-    background-color: darkred;
+    background-image: url("images/white-marble.jpg");
 }
 
 .checker {
@@ -25,9 +25,11 @@
 }
 
 .red-checker {
-    background-color: #DC143C;
+    background-image: url("images/go-stone-white.png");
+    background-size: cover;
 }
 
 .black-checker {
-    background-color: #111;
+    background-image: url("images/go-stone-black.png");
+    background-size: cover;
 }
