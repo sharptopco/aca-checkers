@@ -1,10 +1,22 @@
+body {
+    background-color: #dddddd;
+    text-align: center;
+}
+
+#board-container {
+    background-image: url("images/black-marble.jpg");
+    display: inline-block;
+    padding: 2%;
+}
 .row {
     /*display: flex;*/
     /*justify-content: space-evenly;*/
 }
 .cell {
-    width: 100px;
-    height: 100px;
+    width: 8vw;
+    height: 8vw;
+    max-height: 11vh;
+    max-width: 11vh;
     display: inline-block;
     margin: 0px;
 }
@@ -18,10 +30,10 @@
 }
 
 .checker {
-    margin: 10px;
+    margin: 10%;
     border-radius: 50%;
-    height: 80px;
-    width: 80px;
+    width: 80%;
+    height: 80%;
 }
 
 .red-checker {
