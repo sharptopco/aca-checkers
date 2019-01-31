@@ -4,9 +4,12 @@ body {
 }
 
 #board-container {
-    background-image: url("images/black-marble.jpg");
+    background-image: url("images/death-star.jpg");
     display: inline-block;
     padding: 2%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .row {
     /*display: flex;*/
@@ -22,11 +25,13 @@ body {
 }
 
 .black {
-    background-image: url("images/gray-marble.jpg");
+    /*background-image: url("images/gray-marble.jpg");*/
+    background-color: rgba(0,0,0,0.5);
 }
 
 .red {
-    background-image: url("images/white-marble.jpg");
+    /*background-image: url("images/white-marble.jpg");*/
+    background-color: rgba(255,255,255,0.5);
 }
 
 .checker {
@@ -37,11 +42,11 @@ body {
 }
 
 .red-checker {
-    background-image: url("images/go-stone-white.png");
+    background-image: url("images/x-wing.jpg");
     background-size: cover;
 }
 
 .black-checker {
-    background-image: url("images/go-stone-black.png");
+    background-image: url("images/tie-fighter.jpg");
     background-size: cover;
 }
