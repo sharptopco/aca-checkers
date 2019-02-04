@@ -30,17 +30,44 @@ function renderCell(rowNum, cellNum) {
 }
 
 function renderRow(rowNum) {
-    var rowString = `<div id="row-${rowNum}" class="row">`
-    for (var cellNum=1; cellNum<=8; cellNum++) {
-        rowString = rowString + renderCell(rowNum, cellNum)
-    }
-    return rowString + `</div>`
+    return `
+        <div id="row-${rowNum}" class="row">
+            ${renderCell(rowNum, 1)}
+            ${renderCell(rowNum, 2)}
+            ${renderCell(rowNum, 3)}
+            ${renderCell(rowNum, 4)}
+            ${renderCell(rowNum, 5)}
+            ${renderCell(rowNum, 6)}
+            ${renderCell(rowNum, 7)}
+            ${renderCell(rowNum, 8)}
+        </div>
+    `
 }
 
 function renderBoard() {
-    var boardString = ''
-    for (var rowNum=1; rowNum<=8; rowNum++) {
-        boardString = boardString + renderRow(rowNum)
+    return `
+        ${renderRow(1)}
+        ${renderRow(2)}
+        ${renderRow(3)}
+        ${renderRow(4)}
+        ${renderRow(5)}
+        ${renderRow(6)}
+        ${renderRow(7)}
+        ${renderRow(8)}
+    `
+}
+
+
+/*** optional ***/
+function renderRow2(rowNum) {
+    let cells = []
+    for (var cellNum=1; cellNum<=8; cellNum++) {
+        cells.push(renderCell(rowNum, cellNum))
     }
-    return boardString
+
+    return `
+        <div id="row-${rowNum}" class="row">
+            ${cells.join('')}
+        </div>
+    `
 }
