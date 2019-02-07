@@ -10,15 +10,15 @@ body {
     display: inline-block;
     padding: 2%;
 }
-.row {
-    /*display: flex;*/
-    /*justify-content: space-evenly;*/
-}
 .cell {
     width: 8vmin;
     height: 8vmin;
     display: inline-block;
     margin: 0px;
+}
+
+.selected {
+    border: 1px dashed yellow;
 }
 
 .black {

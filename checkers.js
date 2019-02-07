@@ -1,3 +1,4 @@
+var selectedChecker = undefined
 
 var checkers = [
     whiteChecker(1, 2),
@@ -36,9 +37,9 @@ function renderCheckers() {
     for (let i = 0; i<checkers.length; i++){
         let checker = checkers[i]
         if(checker.row === undefined) {
-            $(`#out-of-play-${checker.color}`).append(`<div class="cell"><div class="checker ${checker.color}-checker"></div></div>`)
+            $(`#out-of-play-${checker.color}`).append(`<div class="cell"><div id="checker-${i}" class="checker ${checker.color}-checker" onclick="selectChecker(${i})"></div></div>`)
         }
-        $(`#cell-${checker.row}-${checker.cell}`).html(`<div class="checker ${checker.color}-checker" onclick="removeChecker(${i})"></div>`)
+        $(`#cell-${checker.row}-${checker.cell}`).html(`<div id="checker-${i}" class="checker ${checker.color}-checker"></div>`)
     }
 }
 
@@ -47,10 +48,37 @@ function clearCheckers() {
     $('.cell').html('')
 }
 
-function removeChecker(i) {
-    checkers[i].row = undefined
-    checkers[i].cell = undefined
+function removeChecker() {
+    if(selectedChecker) {
+        selectedChecker.row = undefined
+        selectedChecker.cell = undefined
+        selectedChecker = undefined
+        renderCheckers()
+    }
+}
+
+function selectChecker(i) {
+    selectedChecker = checkers[i]
+    $('.selected').removeClass('selected')
+    $(`#checker-${i}`).addClass('selected')
+}
+
+function moveChecker(row, cell) {
+    selectedChecker.row = row
+    selectedChecker.cell = cell
     renderCheckers()
+    selectedChecker = undefined
+}
+
+function findCheckerIndex(row, cell) {
+    for(let i=0; i<checkers.length; i++) {
+        let checker = checkers[i];
+        if(checker.row == row && checker.cell == cell) {
+            return i
+        }
+    }
+
+    return undefined
 }
 
 function whiteChecker(row, cell) {

@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#board-container').html(renderBoard())
-    $('.black.cell').click(toggle)
+    $('.black.cell').click(cellController)
     renderCheckers()
 })
 
@@ -33,7 +33,7 @@ function renderRow(rowNum) {
 }
 
 function renderCell(rowNum, cellNum) {
-    return `<div id="cell-${rowNum}-${cellNum}" class="cell ${cellColor(cellNum, rowNum)}"></div>`
+    return `<div id="cell-${rowNum}-${cellNum}" class="cell ${cellColor(cellNum, rowNum)}" row=${rowNum} cell=${cellNum}></div>`
 }
 
 /*** Helper Methods ***/
@@ -45,20 +45,25 @@ function cellColor(cellNum, rowNum) {
     return parity(cellNum) == parity(rowNum) ? 'white' : 'black'
 }
 
-function toggle() {
-    let checker = $(this).children().first()
-    checker.toggle()
-    if(!checker.is(":visible")){
-        switchColor(checker);
+function cellController() {
+    let row = $(this).attr('row');
+    let cell = $(this).attr('cell');
+
+    if(isThisCheckerAlreadySelected(row, cell)) {
+        removeChecker()
+        return
     }
+
+    let i = findCheckerIndex(row, cell)
+    if (i !== undefined) {
+        selectChecker(i)
+        return
+    }
+
+    if(selectedChecker) { moveChecker(row, cell) }
 }
 
-function switchColor(checker) {
-    if (checker.hasClass('black-checker')) {
-        checker.removeClass('black-checker')
-        checker.addClass('white-checker')
-    } else {
-        checker.addClass('black-checker')
-        checker.removeClass('white-checker')
-    }
+function isThisCheckerAlreadySelected(row, cell) {
+    return selectedChecker && selectedChecker.row == row && selectedChecker.cell == cell;
 }
+
