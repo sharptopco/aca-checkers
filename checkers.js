@@ -32,13 +32,25 @@ var checkers = [
 ]
 
 function renderCheckers() {
+    clearCheckers()
     for (let i = 0; i<checkers.length; i++){
         let checker = checkers[i]
         if(checker.row === undefined) {
             $(`#out-of-play-${checker.color}`).append(`<div class="cell"><div class="checker ${checker.color}-checker"></div></div>`)
         }
-        $(`#cell-${checker.row}-${checker.cell}`).append(`<div class="checker ${checker.color}-checker"></div>`)
+        $(`#cell-${checker.row}-${checker.cell}`).html(`<div class="checker ${checker.color}-checker" onclick="removeChecker(${i})"></div>`)
     }
+}
+
+function clearCheckers() {
+    $('.out-of-play').html('')
+    $('.cell').html('')
+}
+
+function removeChecker(i) {
+    checkers[i].row = undefined
+    checkers[i].cell = undefined
+    renderCheckers()
 }
 
 function whiteChecker(row, cell) {
