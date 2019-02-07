@@ -1,14 +1,3 @@
-function whiteChecker(row, cell) {
-    return checker(row, cell, 'white');
-}
-
-function blackChecker(row, cell) {
-    return checker(row, cell, 'black');
-}
-
-function checker(row, cell, color) {
-    return {row: row, cell: cell, color: color};
-}
 
 var checkers = [
     whiteChecker(1, 2),
@@ -52,12 +41,14 @@ function renderCheckers() {
     }
 }
 
-function renderChecker(rowNum) {
-    if (rowNum <= 3) {
-        return `<div class="checker white-checker"></div>`
-    } else if (rowNum >= 6) {
-        return `<div class="checker black-checker"></div>`
-    } else {
-        return `<div class="checker black-checker" hidden="true"></div>`
-    }
+function whiteChecker(row, cell) {
+    return renderChecker(row, cell, 'white');
+}
+
+function blackChecker(row, cell) {
+    return renderChecker(row, cell, 'black');
+}
+
+function renderChecker(row, cell, color) {
+    return {row: row, cell: cell, color: color};
 }
