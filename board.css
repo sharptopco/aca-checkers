@@ -55,4 +55,5 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap-reverse;
+    min-height: 8vmin;
 }
