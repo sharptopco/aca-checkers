@@ -1,6 +1,8 @@
 body {
     background-color: #dddddd;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #board-container {
@@ -13,10 +15,8 @@ body {
     /*justify-content: space-evenly;*/
 }
 .cell {
-    width: 8vw;
-    height: 8vw;
-    max-height: 11vh;
-    max-width: 11vh;
+    width: 8vmin;
+    height: 8vmin;
     display: inline-block;
     margin: 0px;
 }
@@ -49,4 +49,10 @@ body {
 .out-of-play {
     max-width: 72vmin;
     text-align: center;
+}
+
+#out-of-play-white {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap-reverse;
 }
