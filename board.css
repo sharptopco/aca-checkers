@@ -45,3 +45,8 @@ body {
     background-image: url("images/go-stone-black.png");
     background-size: cover;
 }
+
+.out-of-play {
+    max-width: 72vmin;
+    text-align: center;
+}
