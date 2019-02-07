@@ -25,7 +25,7 @@ body {
     background-image: url("images/gray-marble.jpg");
 }
 
-.red {
+.white {
     background-image: url("images/white-marble.jpg");
 }
 
@@ -36,7 +36,7 @@ body {
     height: 80%;
 }
 
-.red-checker {
+.white-checker {
     background-image: url("images/go-stone-white.png");
     background-size: cover;
 }
