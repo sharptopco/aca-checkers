@@ -29,20 +29,18 @@ function renderRow(rowNum) {
 
 function renderCell(rowNum, cellNum) {
     if (cellColor(cellNum, rowNum) === 'black') {
-        // Black Cell
         return `
             <div id="cell-${rowNum}-${cellNum}" class="cell black">
                 ${renderChecker(rowNum)}
             </div>
         `
     } else
-    // White Cell
-        return `<div id="cell-${rowNum}-${cellNum}" class="cell red"></div>`
+        return `<div id="cell-${rowNum}-${cellNum}" class="cell white"></div>`
 }
 
 function renderChecker(rowNum) {
     if (rowNum <= 3) {
-        return `<div class="checker red-checker"></div>`
+        return `<div class="checker white-checker"></div>`
     } else if (rowNum >= 6) {
         return `<div class="checker black-checker"></div>`
     } else {
@@ -56,29 +54,6 @@ function parity(num) {
 }
 
 function cellColor(cellNum, rowNum) {
-    return parity(cellNum) == parity(rowNum) ? 'red' : 'black'
+    return parity(cellNum) == parity(rowNum) ? 'white' : 'black'
 }
 
-/*** Another Way To Do It ***/
-
-function renderBoard2(rowNum) {
-    let rows = []
-    for (var rowNum=1; rowNum<=8; rowNum++) {
-        rows.push(renderRow2(rowNum))
-    }
-
-    return `${rows.join('')}`
-}
-
-function renderRow2(rowNum) {
-    let cells = []
-    for (var cellNum=1; cellNum<=8; cellNum++) {
-        cells.push(renderCell(rowNum, cellNum))
-    }
-
-    return `
-        <div id="row-${rowNum}" class="row">
-            ${cells.join('')}
-        </div>
-    `
-}
