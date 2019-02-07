@@ -40,32 +40,6 @@ var checkers = [
     blackChecker(8, 3),
     blackChecker(8, 5),
     blackChecker(8, 7),
-
-    //TODO: For testing purposes - remove
-    blackChecker(),
-    blackChecker(),
-    blackChecker(),
-    blackChecker(),
-    blackChecker(),
-    blackChecker(),
-    blackChecker(),
-    blackChecker(),
-    blackChecker(),
-    blackChecker(),
-    blackChecker(),
-    blackChecker(),
-    whiteChecker(),
-    whiteChecker(),
-    whiteChecker(),
-    whiteChecker(),
-    whiteChecker(),
-    whiteChecker(),
-    whiteChecker(),
-    whiteChecker(),
-    whiteChecker(),
-    whiteChecker(),
-    whiteChecker(),
-    whiteChecker(),
 ]
 
 function renderCheckers() {
