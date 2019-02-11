@@ -45,21 +45,13 @@ function cellColor(cellNum, rowNum) {
 }
 
 function moveCheckerHere() {
-    console.log(`move checker here`)
-    let row = $(this).attr('row');
-    let cell = $(this).attr('cell');
-    if(selectedChecker) { moveChecker(row, cell) }
-}
-
-function activateChecker(id) {
-    if(isThisCheckerAlreadySelected(checkers[id])) {
-        removeChecker()
-    } else {
-        selectChecker(id)
+    if(selectedChecker) {
+        let row = $(this).attr('row');
+        let cell = $(this).attr('cell');
+        moveChecker(row, cell)
     }
 }
 
-function isThisCheckerAlreadySelected(thisChecker) {
-    return selectedChecker && selectedChecker.id === thisChecker.id;
+function preventMovementToCell(row, cell) {
+    $(`#cell-${row}-${cell}`).unbind(`click`)
 }
-

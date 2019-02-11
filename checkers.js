@@ -36,14 +36,26 @@ var checkers = [
 function renderCheckers() {
     clearCheckers()
     $('.black.cell').click(moveCheckerHere)
+
     for (let i = 0; i<checkers.length; i++){
         let checker = checkers[i]
-        if(checker.row === undefined) {
-            $(`#out-of-play-${checker.color}`).append(`<div class="cell"><div id="checker-${i}" class="checker ${checker.color}-checker" onclick="activateChecker(${i})"></div></div>`)
-        }
-        $(`#cell-${checker.row}-${checker.cell}`).html(`<div id="checker-${i}" class="checker ${checker.color}-checker" onclick="activateChecker(${i})"></div>`)
-        $(`#cell-${checker.row}-${checker.cell}`).unbind(`click`)
+        renderChecker(checker)
+        preventMovementToCell(checker.row, checker.cell)
     }
+
+    $(`.checker`).click(selectChecker)
+    if(selectedChecker) {
+        $(`#checker-${selectedChecker.id}`).click(removeChecker)
+        $(`#checker-${selectedChecker.id}`).addClass('selected')
+    }
+}
+
+function renderChecker(checker) {
+    let checkerHtml = `<div id="checker-${checker.id}" class="checker ${checker.color}-checker" checker-id="${checker.id}"></div>`;
+    if(checker.row === undefined) {
+        $(`#out-of-play-${checker.color}`).append(`<div class="cell">${checkerHtml}</div>`)
+    }
+    $(`#cell-${checker.row}-${checker.cell}`).html(checkerHtml)
 }
 
 function clearCheckers() {
@@ -60,39 +72,28 @@ function removeChecker() {
     }
 }
 
-function selectChecker(i) {
-    selectedChecker = checkers[i]
-    $('.selected').removeClass('selected')
-    $(`#checker-${i}`).addClass('selected')
+function selectChecker() {
+    let id = $(this).attr('checker-id');
+    selectedChecker = checkers[id]
+    renderCheckers()
 }
 
 function moveChecker(row, cell) {
     selectedChecker.row = row
     selectedChecker.cell = cell
-    renderCheckers()
     selectedChecker = undefined
-}
-
-function findCheckerIndex(row, cell) {
-    for(let i=0; i<checkers.length; i++) {
-        let checker = checkers[i];
-        if(checker.row == row && checker.cell == cell) {
-            return i
-        }
-    }
-
-    return undefined
+    renderCheckers()
 }
 
 function whiteChecker(row, cell) {
-    return renderChecker(row, cell, 'white');
+    return createChecker(row, cell, 'white');
 }
 
 function blackChecker(row, cell) {
-    return renderChecker(row, cell, 'black');
+    return createChecker(row, cell, 'black');
 }
 
-function renderChecker(row, cell, color) {
+function createChecker(row, cell, color) {
     let checker = {id: nextId, row: row, cell: cell, color: color}
     nextId++
     return checker
