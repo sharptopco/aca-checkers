@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $('#board-container').html(renderBoard())
-    $('.black.cell').click(cellController)
     renderCheckers()
 })
 
@@ -45,25 +44,22 @@ function cellColor(cellNum, rowNum) {
     return parity(cellNum) == parity(rowNum) ? 'white' : 'black'
 }
 
-function cellController() {
+function moveCheckerHere() {
+    console.log(`move checker here`)
     let row = $(this).attr('row');
     let cell = $(this).attr('cell');
-
-    if(isThisCheckerAlreadySelected(row, cell)) {
-        removeChecker()
-        return
-    }
-
-    let i = findCheckerIndex(row, cell)
-    if (i !== undefined) {
-        selectChecker(i)
-        return
-    }
-
     if(selectedChecker) { moveChecker(row, cell) }
 }
 
-function isThisCheckerAlreadySelected(row, cell) {
-    return selectedChecker && selectedChecker.row == row && selectedChecker.cell == cell;
+function activateChecker(id) {
+    if(isThisCheckerAlreadySelected(checkers[id])) {
+        removeChecker()
+    } else {
+        selectChecker(id)
+    }
+}
+
+function isThisCheckerAlreadySelected(thisChecker) {
+    return selectedChecker && selectedChecker.id === thisChecker.id;
 }
 

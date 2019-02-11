@@ -1,4 +1,5 @@
 var selectedChecker = undefined
+var nextId = 0
 
 var checkers = [
     whiteChecker(1, 2),
@@ -34,12 +35,14 @@ var checkers = [
 
 function renderCheckers() {
     clearCheckers()
+    $('.black.cell').click(moveCheckerHere)
     for (let i = 0; i<checkers.length; i++){
         let checker = checkers[i]
         if(checker.row === undefined) {
-            $(`#out-of-play-${checker.color}`).append(`<div class="cell"><div id="checker-${i}" class="checker ${checker.color}-checker" onclick="selectChecker(${i})"></div></div>`)
+            $(`#out-of-play-${checker.color}`).append(`<div class="cell"><div id="checker-${i}" class="checker ${checker.color}-checker" onclick="activateChecker(${i})"></div></div>`)
         }
-        $(`#cell-${checker.row}-${checker.cell}`).html(`<div id="checker-${i}" class="checker ${checker.color}-checker"></div>`)
+        $(`#cell-${checker.row}-${checker.cell}`).html(`<div id="checker-${i}" class="checker ${checker.color}-checker" onclick="activateChecker(${i})"></div>`)
+        $(`#cell-${checker.row}-${checker.cell}`).unbind(`click`)
     }
 }
 
@@ -90,5 +93,7 @@ function blackChecker(row, cell) {
 }
 
 function renderChecker(row, cell, color) {
-    return {row: row, cell: cell, color: color};
+    let checker = {id: nextId, row: row, cell: cell, color: color}
+    nextId++
+    return checker
 }
