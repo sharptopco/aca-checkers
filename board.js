@@ -50,6 +50,7 @@ function cellController() {
     let cell = $(this).attr('cell');
 
     if(isThisCheckerAlreadySelected(row, cell)) {
+        console.log('remove checker')
         removeChecker()
         return
     }
@@ -60,10 +61,16 @@ function cellController() {
         return
     }
 
-    if(selectedChecker) { moveChecker(row, cell) }
+    if(isAnyCheckerSelected()) { moveChecker(row, cell) }
 }
 
 function isThisCheckerAlreadySelected(row, cell) {
-    return selectedChecker && selectedChecker.row == row && selectedChecker.cell == cell;
+    if(!isAnyCheckerSelected()) return false
+    let checker = checkers[selectedCheckerIndex]
+    return checker.row == row && checker.cell == cell
+}
+
+function isAnyCheckerSelected() {
+    return typeof selectedCheckerIndex !== 'undefined';
 }
 

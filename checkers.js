@@ -1,4 +1,4 @@
-var selectedChecker = undefined
+var selectedCheckerIndex = undefined
 
 var checkers = [
     whiteChecker(1, 2),
@@ -49,25 +49,27 @@ function clearCheckers() {
 }
 
 function removeChecker() {
-    if(selectedChecker) {
-        selectedChecker.row = undefined
-        selectedChecker.cell = undefined
-        selectedChecker = undefined
+    if(selectedCheckerIndex) {
+        let checker = checkers[selectedCheckerIndex]
+        checker.row = undefined
+        checker.cell = undefined
+        selectedCheckerIndex = undefined
         renderCheckers()
     }
 }
 
 function selectChecker(i) {
-    selectedChecker = checkers[i]
+    selectedCheckerIndex = i
     $('.selected').removeClass('selected')
     $(`#checker-${i}`).addClass('selected')
 }
 
 function moveChecker(row, cell) {
-    selectedChecker.row = row
-    selectedChecker.cell = cell
+    let checker = checkers[selectedCheckerIndex]
+    checker.row = row
+    checker.cell = cell
     renderCheckers()
-    selectedChecker = undefined
+    selectedCheckerIndex = undefined
 }
 
 function findCheckerIndex(row, cell) {
