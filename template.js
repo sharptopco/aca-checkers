@@ -1,3 +1,18 @@
+var checkers = [
+    {row: 1, cell: 2, color: 'white'},
+    {row: 1, cell: 4, color: 'white'},
+    {row: 1, cell: 6, color: 'white'},
+    {row: 1, cell: 8, color: 'white'},
+    {row: 2, cell: 1, color: 'white'},
+    {row: 2, cell: 3, color: 'white'},
+    {row: 2, cell: 5, color: 'white'},
+    {row: 2, cell: 7, color: 'white'},
+    {row: 3, cell: 2, color: 'white'},
+    {row: 3, cell: 4, color: 'white'},
+    {row: 3, cell: 6, color: 'white'},
+    {row: 3, cell: 8, color: 'white'},
+]
+
 
 function renderBoard() {
     return `
@@ -29,23 +44,22 @@ function renderRow(rowNum) {
 
 function renderCell(rowNum, cellNum) {
     if (cellColor(cellNum, rowNum) === 'black') {
-        return `
-            <div id="cell-${rowNum}-${cellNum}" class="cell black">
-                ${renderChecker(rowNum)}
-            </div>
-        `
+        return `<div id="cell-${rowNum}-${cellNum}" class="cell black"></div>`
     } else
         return `<div id="cell-${rowNum}-${cellNum}" class="cell white"></div>`
 }
 
-function renderChecker(rowNum) {
-    if (rowNum <= 3) {
-        return `<div class="checker white-checker"></div>`
-    } else if (rowNum >= 6) {
-        return `<div class="checker black-checker"></div>`
-    } else {
-        return `<div class="checker black-checker" hidden="true"></div>`
+function renderCheckers(){
+    console.log('rendering checkers')
+    for(let i=0; i<checkers.length; i++) {
+        let checker = checkers[i];
+        console.log(checker)
+        $(`#cell-${checker.row}-${checker.cell}`).html(renderChecker(checker.color))
     }
+}
+
+function renderChecker(color) {
+    return `<div class="checker ${color}-checker"></div>`
 }
 
 /*** Helper Methods ***/
