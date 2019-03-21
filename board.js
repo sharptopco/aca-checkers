@@ -1,7 +1,7 @@
 $(document).ready(function () {
     console.log('document ready')
     $('#board-container').html(renderBoard())
-    $('.black.cell').click(toggle)
+    $('.black.cell').click(selectChecker)
     renderCheckers()
 })
 
