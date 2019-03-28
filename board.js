@@ -1,6 +1,7 @@
 $(document).ready(function () {
     console.log('document ready')
     $('#board-container').html(renderBoard())
+    $(`.black.cell`).click(moveSelectedCheckerHere)
     renderCheckers()
     $('.checker').click(selectChecker)
 })
@@ -68,3 +69,18 @@ function cellColor(cellNum, rowNum) {
     return parity(cellNum) == parity(rowNum) ? 'white' : 'black'
 }
 
+function moveSelectedCheckerHere() {
+    console.log('things')
+    if(selectedChecker) {
+        console.log(`move checker here`)
+        selectedChecker.row = 4
+        selectedChecker.cell = 1
+        renderCheckers()
+    } else {
+        console.log(`select a checker, foo!`)
+    }
+}
+
+function clearBoard() {
+    $(`.black.cell`).html(``)
+}

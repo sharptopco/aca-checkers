@@ -30,10 +30,12 @@ var checkers = [
 
 function renderCheckers(){
     console.log('rendering checkers')
+    clearBoard()
     for(let i=0; i<checkers.length; i++) {
         let checker = checkers[i];
         console.log(checker)
         $(`#cell-${checker.row}-${checker.cell}`).html(renderChecker(i, checker.color))
+        $(`#cell-${checker.row}-${checker.cell}`).click('')
     }
 }
 
@@ -57,5 +59,5 @@ function selectChecker() {
     selectedChecker = checkers[checkerIndex]
     console.log(`Finished selecting checker: `, selectedChecker)
 
-    checker.parent().addClass(`selected`)
+    checker.addClass(`selected`)
 }
