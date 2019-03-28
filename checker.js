@@ -33,16 +33,29 @@ function renderCheckers(){
     for(let i=0; i<checkers.length; i++) {
         let checker = checkers[i];
         console.log(checker)
-        $(`#cell-${checker.row}-${checker.cell}`).html(renderChecker(checker.color))
+        $(`#cell-${checker.row}-${checker.cell}`).html(renderChecker(i, checker.color))
     }
 }
 
-function renderChecker(color) {
-    return `<div class="checker ${color}-checker"></div>`
+function renderChecker(i, color) {
+    return `<div id="checker-${i}" class="checker ${color}-checker"></div>`
 }
 
 function selectChecker() {
-    let checker = $(this).children().first()
+    $(`.selected`).removeClass(`selected`)
+    let checker = $(this)
+    let id = checker.attr('id')
     console.log('selecting checker: ', checker)
-    selectedChecker = checker
+    console.log(`the id of the checker you selected is ${id}`)
+
+    let stringParts = id.split('-')
+    console.log(`bacon = `, stringParts)
+
+    let checkerIndex = stringParts[1]
+    console.log(`checkerIndex == `, checkerIndex)
+
+    selectedChecker = checkers[checkerIndex]
+    console.log(`Finished selecting checker: `, selectedChecker)
+
+    checker.parent().addClass(`selected`)
 }

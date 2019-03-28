@@ -45,3 +45,7 @@ body {
     background-image: url("images/go-stone-black.png");
     background-size: cover;
 }
+
+.selected {
+    border: 1px dashed yellow;
+}
