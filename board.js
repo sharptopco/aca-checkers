@@ -61,6 +61,13 @@ function moveSelectedCheckerHere() {
 
         selectedChecker.row = idParts[1]
         selectedChecker.cell = idParts[2]
+
+        console.log(`the checker I'm moving is `, selectedChecker.color)
+        if (selectedChecker.color == `black` && selectedChecker.row == 1) {
+            console.log(`I'm moving a black checker to the white home row`)
+            selectedChecker.isKing = true
+        }
+
         selectedChecker = undefined
         renderCheckers()
     } else {
