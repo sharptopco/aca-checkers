@@ -1,29 +1,8 @@
 $(document).ready(function () {
     console.log('document ready')
     $('#board-container').html(renderBoard())
-    $(`.black.cell`).click(moveSelectedCheckerHere)
     renderCheckers()
-    $('.checker').click(selectChecker)
 })
-
-function toggle() {
-    let checker = $(this).children().first()
-    checker.toggle()
-    if(!checker.is(":visible")){
-        switchColor(checker);
-    }
-}
-
-function switchColor(checker) {
-    if (checker.hasClass('black-checker')) {
-        checker.removeClass('black-checker')
-        checker.addClass('white-checker')
-    } else {
-        checker.addClass('black-checker')
-        checker.removeClass('white-checker')
-    }
-}
-
 
 function renderBoard() {
     return `
@@ -73,8 +52,16 @@ function moveSelectedCheckerHere() {
     console.log('things')
     if(selectedChecker) {
         console.log(`move checker here`)
-        selectedChecker.row = 4
-        selectedChecker.cell = 1
+        let blackCell = $(this)
+        console.log(`black cell: `, blackCell)
+        let id = blackCell.attr('id')
+        console.log(`id: `, id)
+        let idParts = id.split('-')
+        console.log(`idParts = `, idParts)
+
+        selectedChecker.row = idParts[1]
+        selectedChecker.cell = idParts[2]
+        selectedChecker = undefined
         renderCheckers()
     } else {
         console.log(`select a checker, foo!`)
@@ -83,4 +70,6 @@ function moveSelectedCheckerHere() {
 
 function clearBoard() {
     $(`.black.cell`).html(``)
+    $(`.black.cell`).unbind('click')
+    $(`.out-of-play`).html(``)
 }

@@ -31,33 +31,48 @@ var checkers = [
 function renderCheckers(){
     console.log('rendering checkers')
     clearBoard()
+    $(`.black.cell`).click(moveSelectedCheckerHere)
     for(let i=0; i<checkers.length; i++) {
         let checker = checkers[i];
         console.log(checker)
-        $(`#cell-${checker.row}-${checker.cell}`).html(renderChecker(i, checker.color))
-        $(`#cell-${checker.row}-${checker.cell}`).click('')
+        if (checker.row && checker.cell) {
+            $(`#cell-${checker.row}-${checker.cell}`).html(renderChecker(i, checker.color))
+            $(`#cell-${checker.row}-${checker.cell}`).unbind('click')
+        } else {
+            console.log(`put `, checker, ` into out of play`)
+            $(`#out-of-play-${checker.color}`).append(renderChecker(i, checker.color))
+        }
     }
+    $('.checker').click(selectChecker)
 }
 
 function renderChecker(i, color) {
-    return `<div id="checker-${i}" class="checker ${color}-checker"></div>`
+    return `<div id="checker-${i}" class="checker ${color}-checker" bacon="${i}"></div>`
 }
 
 function selectChecker() {
-    $(`.selected`).removeClass(`selected`)
     let checker = $(this)
-    let id = checker.attr('id')
-    console.log('selecting checker: ', checker)
-    console.log(`the id of the checker you selected is ${id}`)
+    if(checker.hasClass(`selected`)) {
+        console.log(`this checker was already selected`)
+        remove()
+        return
+    }
 
-    let stringParts = id.split('-')
-    console.log(`bacon = `, stringParts)
+    $(`.selected`).removeClass(`selected`)
 
-    let checkerIndex = stringParts[1]
+    let checkerIndex = checker.attr('bacon')
     console.log(`checkerIndex == `, checkerIndex)
 
     selectedChecker = checkers[checkerIndex]
     console.log(`Finished selecting checker: `, selectedChecker)
 
     checker.addClass(`selected`)
+}
+
+function remove() {
+    console.log(`removing this...`, selectedChecker)
+    selectedChecker.row = undefined
+    selectedChecker.cell = undefined
+    selectedChecker = undefined
+    renderCheckers()
 }
