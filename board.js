@@ -59,8 +59,8 @@ function moveSelectedCheckerHere() {
         let idParts = id.split('-')
         console.log(`idParts = `, idParts)
 
-        selectedChecker.row = idParts[1]
-        selectedChecker.cell = idParts[2]
+        selectedChecker.row = Number(idParts[1])
+        selectedChecker.cell = Number(idParts[2])
 
         console.log(`the checker I'm moving is `, selectedChecker.color)
         if (selectedChecker.color == `black` && selectedChecker.row == 1) {
