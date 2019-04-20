@@ -66,6 +66,9 @@ function moveSelectedCheckerHere() {
         if (selectedChecker.color == `black` && selectedChecker.row == 1) {
             console.log(`I'm moving a black checker to the white home row`)
             selectedChecker.isKing = true
+        } else if (selectedChecker.color == `white` && selectedChecker.row == 8) {
+            console.log(`I'm moving a white checker to the black home row`)
+            selectedChecker.isKing = true
         }
 
         selectedChecker = undefined

@@ -6,17 +6,17 @@ body {
 #board-container {
     background-image: url("images/black-marble.jpg");
     display: inline-block;
-    padding: 2%;
+    padding: 1vmin;
 }
 .row {
-    /*display: flex;*/
-    /*justify-content: space-evenly;*/
+    display: flex;
+    justify-content: space-evenly;
 }
 .cell {
     width: 8.5vmin;
     height: 8.5vmin;
     display: inline-block;
-    margin: 0px;
+    margin: 0.4vmin;
 }
 
 .black {
@@ -32,16 +32,21 @@ body {
     border-radius: 50%;
     width: 80%;
     height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .white-checker {
     background-image: url("images/go-stone-white.png");
     background-size: cover;
+    color: #444444;
 }
 
 .black-checker {
     background-image: url("images/go-stone-black.png");
     background-size: cover;
+    color: #cccccc;
 }
 
 .selected {
@@ -53,4 +58,8 @@ body {
 .out-of-play {
     /*width: 10vmin;*/
     /*height: 10vmin;*/
+}
+
+i {
+    font-size: 3vmin;
 }
